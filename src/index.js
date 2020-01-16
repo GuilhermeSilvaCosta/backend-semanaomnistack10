@@ -12,6 +12,7 @@ app.use(routes);
 
 app.get('/', (req, res) => {
     return res.json({ message: 'hello omnistack'});
+    
 })
 
 app.listen(3333);
