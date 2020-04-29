@@ -11,6 +11,17 @@ module.exports = {
         return res.json(devs);
     },
 
+    async remove(req, res) {
+        const { _id } = req.params;
+        try {
+            await Dev.deleteOne({ _id });
+            return res.status(204).json();
+        } catch(e) {
+            return res.status(404).json();
+        }
+        
+    },
+
     async store(req, res) {
         const { github_username, techs, latitude, longitude } = req.body;
     
@@ -36,18 +47,16 @@ module.exports = {
                 techs: techsArray,
                 location
             });
-
-            // Filtrar conexões max 10km dist
-
-            const sendSocketMessageTo = findConnections(
-                { latitude, longitude },
-                techsArray
-            )
-
-            sendMessage(sendSocketMessageTo, 'new-dev', dev)
-
-            console.log(sendSocketMessageTo);
         }
+
+        // Filtrar conexões max 10km dist
+        const sendSocketMessageTo = findConnections(
+            { latitude, longitude }, dev.techs
+        )
+
+        sendMessage(sendSocketMessageTo, 'new-dev', dev)
+
+        console.log(sendSocketMessageTo);
     
         return res.json(dev);
     }

@@ -4,6 +4,7 @@ const SearchController = require('./controllers/SearchController');
 
 const routes = Router();
 
+routes.delete('/devs/:_id', DevController.remove);
 routes.get('/devs', DevController.index);
 routes.post('/devs', DevController.store);
 
