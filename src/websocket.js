@@ -6,7 +6,13 @@ let io;
 const connections = [];
 
 exports.setupWebsocket = (server) => {
-    io = socketio(server);
+    io = socketio(server, {
+        transports: [
+          'websocket',
+          'polling',
+          'long-polling'
+        ]
+    });
     io.on('connection', socket => {
         console.log('aki')
         const { latitude, longitude, techs } = socket.handshake.query;
