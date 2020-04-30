@@ -7,8 +7,7 @@ const connections = [];
 
 exports.setupWebsocket = (server) => {
     io = socketio(server);
-    
-    io.of('/week10').on('connection', socket => {
+    io.on('connection', socket => {
         console.log('aki')
         const { latitude, longitude, techs } = socket.handshake.query;
 
