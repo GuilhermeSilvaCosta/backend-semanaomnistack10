@@ -8,7 +8,8 @@ const connections = [];
 exports.setupWebsocket = (server) => {
     io = socketio(server);
     
-    io.on('connection', socket => {
+    io.of('/week10').on('connection', socket => {
+        console.log('aki')
         const { latitude, longitude, techs } = socket.handshake.query;
 
         connections.push({
@@ -17,7 +18,7 @@ exports.setupWebsocket = (server) => {
                 latitude: Number(latitude),
                 longitude: Number(longitude),
             },
-            techs: parseStringAsArray(techs),
+            techs: techs ? parseStringAsArray(techs) : '',
         });
     });
 };
