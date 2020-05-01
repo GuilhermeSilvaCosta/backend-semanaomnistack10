@@ -7,11 +7,7 @@ const connections = [];
 
 exports.setupWebsocket = (server) => {
     io = socketio(server, {
-        transports: [
-          'websocket',
-          'polling',
-          'long-polling'
-        ]
+        path: '/week10'
     });
     io.on('connection', socket => {
         console.log('aki')
