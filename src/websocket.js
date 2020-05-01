@@ -7,7 +7,7 @@ const connections = [];
 
 exports.setupWebsocket = (server) => {
     io = socketio(server, {
-        path: '/week10'
+        path: '/week10socket'
     });
     io.on('connection', socket => {
         console.log('aki')
