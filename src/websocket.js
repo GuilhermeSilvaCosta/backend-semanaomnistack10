@@ -10,7 +10,6 @@ exports.setupWebsocket = (server) => {
         path: '/week10socket'
     });
     io.on('connection', socket => {
-        console.log('aki')
         const { latitude, longitude, techs } = socket.handshake.query;
 
         connections.push({
